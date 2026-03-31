@@ -1,0 +1,80 @@
+{
+  "skill_id": "victims_get_victims_all",
+  "name": "get_victims_all",
+  "display_name": "按条件查询受害者列表",
+  "description": "返回按至少一个查询参数过滤的受害者列表。可按组织名、行业、国家、年份、月份过滤。默认使用 'discovered'（发现日期）进行日期过滤，除非指定 date=attacked。",
+  "category": "victims",
+  "version": "1.0.0",
+  "api": {
+    "base_url": "https://api-pro.ransomware.live",
+    "endpoint": "/victims/",
+    "method": "GET",
+    "content_type": "application/json",
+    "auth": {
+      "type": "apikey",
+      "in": "header",
+      "name": "X-API-KEY"
+    }
+  },
+  "parameters_map": {
+    "group":   { "in": "query", "required": false },
+    "sector":  { "in": "query", "required": false },
+    "country": { "in": "query", "required": false },
+    "year":    { "in": "query", "required": false },
+    "month":   { "in": "query", "required": false },
+    "date":    { "in": "query", "required": false }
+  },
+  "function": {
+    "type": "function",
+    "function": {
+      "name": "get_victims_all",
+      "description": "返回按至少一个查询参数过滤的受害者列表。默认使用 'discovered'（发现日期）过滤，除非指定 date=attacked。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "group": {
+            "type": "string",
+            "description": "按勒索软件组织名称过滤（例如：lockbit）"
+          },
+          "sector": {
+            "type": "string",
+            "description": "按受害者行业过滤（例如：healthcare、education、government）"
+          },
+          "country": {
+            "type": "string",
+            "description": "按2位国家代码过滤（例如：US、FR、DE）"
+          },
+          "year": {
+            "type": "string",
+            "description": "4位年份（例如：2024）"
+          },
+          "month": {
+            "type": "string",
+            "description": "2位月份（例如：03）"
+          },
+          "date": {
+            "type": "string",
+            "description": "日期过滤方式：'discovered'（默认）或 'attacked'",
+            "enum": ["discovered", "attacked"],
+            "default": "discovered"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "查询所有 LockBit 3 的受害者",
+      "input": { "group": "lockbit3" }
+    },
+    {
+      "description": "查询2024年美国医疗行业受害者",
+      "input": { "country": "US", "sector": "healthcare", "year": "2024" }
+    },
+    {
+      "description": "查询法国2024年3月的受害者（按攻击日期）",
+      "input": { "country": "FR", "year": "2024", "month": "03", "date": "attacked" }
+    }
+  ]
+}

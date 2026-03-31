@@ -1,0 +1,49 @@
+{
+  "skill_id": "groups_get_group_detail",
+  "name": "get_group_detail",
+  "display_name": "查询勒索软件组织详情",
+  "description": "返回特定勒索软件组织的详细信息，包括 TTPs（战术、技术和程序）、使用工具、受害者数量、活跃周期、勒索信和谈判记录。",
+  "category": "groups",
+  "version": "1.0.0",
+  "api": {
+    "base_url": "https://api-pro.ransomware.live",
+    "endpoint": "/groups/{groupname}",
+    "method": "GET",
+    "content_type": "application/json",
+    "auth": {
+      "type": "apikey",
+      "in": "header",
+      "name": "X-API-KEY"
+    }
+  },
+  "parameters_map": {
+    "groupname": { "in": "path", "required": true }
+  },
+  "function": {
+    "type": "function",
+    "function": {
+      "name": "get_group_detail",
+      "description": "返回特定勒索软件组织的详细信息，包括 TTPs、工具、受害者数量、活跃周期、勒索信和谈判记录。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "groupname": {
+            "type": "string",
+            "description": "勒索软件组织名称（例如：lockbit3、blackcat、clop）"
+          }
+        },
+        "required": ["groupname"]
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "查询 LockBit 3 组织的详情",
+      "input": { "groupname": "lockbit3" }
+    },
+    {
+      "description": "查询 BlackCat/ALPHV 组织的详情",
+      "input": { "groupname": "blackcat" }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "skill_id": "ransomnotes_get_ransomnote_group_list",
+  "name": "get_ransomnote_group_list",
+  "display_name": "获取组织的勒索信文件列表",
+  "description": "返回特定勒索软件组织的所有可用勒索信文件名列表。",
+  "category": "ransomnotes",
+  "version": "1.0.0",
+  "api": {
+    "base_url": "https://api-pro.ransomware.live",
+    "endpoint": "/ransomnotes/{group}",
+    "method": "GET",
+    "content_type": "application/json",
+    "auth": {
+      "type": "apikey",
+      "in": "header",
+      "name": "X-API-KEY"
+    }
+  },
+  "parameters_map": {
+    "group": { "in": "path", "required": true }
+  },
+  "function": {
+    "type": "function",
+    "function": {
+      "name": "get_ransomnote_group_list",
+      "description": "返回特定勒索软件组织的可用勒索信文件名列表。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "group": {
+            "type": "string",
+            "description": "勒索软件组织名称（例如：lockbit）"
+          }
+        },
+        "required": ["group"]
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "获取 LockBit 组织的所有勒索信文件名",
+      "input": { "group": "lockbit" }
+    },
+    {
+      "description": "获取 Clop 组织的勒索信文件列表",
+      "input": { "group": "clop" }
+    }
+  ]
+}

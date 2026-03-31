@@ -1,0 +1,239 @@
+{
+  "name": "Ransomware.live API Skills",
+  "description": "基于 Ransomware.live API PRO 的 AI Skills 集合，涵盖勒索软件威胁情报的全面查询能力。",
+  "version": "1.0.0",
+  "api_base_url": "https://api-pro.ransomware.live",
+  "auth": {
+    "type": "apikey",
+    "in": "header",
+    "name": "X-API-KEY",
+    "obtain_url": "https://my.ransomware.live"
+  },
+  "total_skills": 23,
+  "categories": [
+    {
+      "id": "filings",
+      "display_name": "SEC 归档表单",
+      "description": "查询上市公司网络安全事件相关的 SEC 8-K 表单",
+      "skills": [
+        {
+          "skill_id": "filings_get_forms_8k",
+          "name": "get_forms_8k",
+          "display_name": "查询 8-K 网络安全归档表单",
+          "file": "filings/get_forms_8k.json",
+          "endpoint": "GET /8k"
+        }
+      ]
+    },
+    {
+      "id": "groups",
+      "display_name": "勒索软件组织",
+      "description": "查询勒索软件组织信息、TTPs 和详细档案",
+      "skills": [
+        {
+          "skill_id": "groups_get_group_list",
+          "name": "get_group_list",
+          "display_name": "获取所有勒索软件组织列表",
+          "file": "groups/get_group_list.json",
+          "endpoint": "GET /groups"
+        },
+        {
+          "skill_id": "groups_get_group_detail",
+          "name": "get_group_detail",
+          "display_name": "查询勒索软件组织详情",
+          "file": "groups/get_group_detail.json",
+          "endpoint": "GET /groups/{groupname}"
+        }
+      ]
+    },
+    {
+      "id": "iocs",
+      "display_name": "入侵指标 (IOC)",
+      "description": "查询勒索软件组织的 IP、哈希、域名、邮箱、比特币地址等入侵指标",
+      "skills": [
+        {
+          "skill_id": "iocs_get_ioc_group_list",
+          "name": "get_ioc_group_list",
+          "display_name": "获取拥有 IOC 的勒索软件组织列表",
+          "file": "iocs/get_ioc_group_list.json",
+          "endpoint": "GET /iocs"
+        },
+        {
+          "skill_id": "iocs_get_group_iocs",
+          "name": "get_group_iocs",
+          "display_name": "获取指定组织的入侵指标 (IOC)",
+          "file": "iocs/get_group_iocs.json",
+          "endpoint": "GET /iocs/{group}"
+        }
+      ]
+    },
+    {
+      "id": "negotiations",
+      "display_name": "谈判记录",
+      "description": "查询勒索软件受害者与攻击者之间的谈判聊天记录及赎金信息",
+      "skills": [
+        {
+          "skill_id": "negotiations_get_negotiation_groups",
+          "name": "get_negotiation_groups",
+          "display_name": "列出拥有谈判记录的勒索软件组织",
+          "file": "negotiations/get_negotiation_groups.json",
+          "endpoint": "GET /negotiations"
+        },
+        {
+          "skill_id": "negotiations_get_negotiation_group_chats",
+          "name": "get_negotiation_group_chats",
+          "display_name": "获取组织谈判聊天元数据",
+          "file": "negotiations/get_negotiation_group_chats.json",
+          "endpoint": "GET /negotiations/{group}"
+        },
+        {
+          "skill_id": "negotiations_get_negotiation_chat_detail",
+          "name": "get_negotiation_chat_detail",
+          "display_name": "获取具体谈判聊天记录详情",
+          "file": "negotiations/get_negotiation_chat_detail.json",
+          "endpoint": "GET /negotiations/{group}/{chat_id}"
+        }
+      ]
+    },
+    {
+      "id": "ransomnotes",
+      "display_name": "勒索信",
+      "description": "查询和获取勒索软件组织的勒索信内容",
+      "skills": [
+        {
+          "skill_id": "ransomnotes_get_ransomnote_groups",
+          "name": "get_ransomnote_groups",
+          "display_name": "列出拥有勒索信的组织",
+          "file": "ransomnotes/get_ransomnote_groups.json",
+          "endpoint": "GET /ransomnotes"
+        },
+        {
+          "skill_id": "ransomnotes_get_ransomnote_group_list",
+          "name": "get_ransomnote_group_list",
+          "display_name": "获取组织的勒索信文件列表",
+          "file": "ransomnotes/get_ransomnote_group_list.json",
+          "endpoint": "GET /ransomnotes/{group}"
+        },
+        {
+          "skill_id": "ransomnotes_get_ransomnote_detail",
+          "name": "get_ransomnote_detail",
+          "display_name": "获取勒索信完整内容",
+          "file": "ransomnotes/get_ransomnote_detail.json",
+          "endpoint": "GET /ransomnotes/{group}/{note_name}"
+        }
+      ]
+    },
+    {
+      "id": "press",
+      "display_name": "网络攻击新闻",
+      "description": "查询网络攻击事件新闻，含信息窃取软件和勒索软件补充信息",
+      "skills": [
+        {
+          "skill_id": "press_get_press_list",
+          "name": "get_press_list",
+          "display_name": "获取所有网络攻击新闻条目",
+          "file": "press/get_press_list.json",
+          "endpoint": "GET /press/all"
+        },
+        {
+          "skill_id": "press_get_press_recent",
+          "name": "get_press_recent",
+          "display_name": "获取最近100条网络攻击新闻",
+          "file": "press/get_press_recent.json",
+          "endpoint": "GET /press/recent"
+        }
+      ]
+    },
+    {
+      "id": "yara",
+      "display_name": "YARA 检测规则",
+      "description": "获取勒索软件组织的 YARA 恶意软件检测规则",
+      "skills": [
+        {
+          "skill_id": "yara_get_yara_rules_list",
+          "name": "get_yara_rules_list",
+          "display_name": "列出拥有 YARA 规则的组织",
+          "file": "yara/get_yara_rules_list.json",
+          "endpoint": "GET /yara"
+        },
+        {
+          "skill_id": "yara_get_yara_rules_detail",
+          "name": "get_yara_rules_detail",
+          "display_name": "获取组织的 YARA 规则内容",
+          "file": "yara/get_yara_rules_detail.json",
+          "endpoint": "GET /yara/{group}"
+        }
+      ]
+    },
+    {
+      "id": "csirt",
+      "display_name": "CSIRT/CERT 机构",
+      "description": "按国家查询计算机安全事件响应机构信息",
+      "skills": [
+        {
+          "skill_id": "csirt_get_csirt_by_country",
+          "name": "get_csirt_by_country",
+          "display_name": "按国家查询 CSIRT/CERT 信息",
+          "file": "csirt/get_csirt_by_country.json",
+          "endpoint": "GET /csirt/{country}"
+        }
+      ]
+    },
+    {
+      "id": "victims",
+      "display_name": "受害者",
+      "description": "查询、搜索和浏览勒索软件受害者信息",
+      "skills": [
+        {
+          "skill_id": "victims_get_victims_all",
+          "name": "get_victims_all",
+          "display_name": "按条件查询受害者列表",
+          "file": "victims/get_victims_all.json",
+          "endpoint": "GET /victims/"
+        },
+        {
+          "skill_id": "victims_get_recent_victims",
+          "name": "get_recent_victims",
+          "display_name": "获取最近100个受害者",
+          "file": "victims/get_recent_victims.json",
+          "endpoint": "GET /victims/recent"
+        },
+        {
+          "skill_id": "victims_get_victim_search",
+          "name": "get_victim_search",
+          "display_name": "关键词搜索受害者",
+          "file": "victims/get_victim_search.json",
+          "endpoint": "GET /victims/search"
+        },
+        {
+          "skill_id": "victims_get_single_victim",
+          "name": "get_single_victim",
+          "display_name": "查询单个受害者详情",
+          "file": "victims/get_single_victim.json",
+          "endpoint": "GET /victim/{victim_id}"
+        }
+      ]
+    },
+    {
+      "id": "system",
+      "display_name": "系统",
+      "description": "平台统计数据与 API Key 验证",
+      "skills": [
+        {
+          "skill_id": "system_get_stats",
+          "name": "get_stats",
+          "display_name": "获取平台统计数据",
+          "file": "system/get_stats.json",
+          "endpoint": "GET /stats"
+        },
+        {
+          "skill_id": "system_get_validate_key",
+          "name": "get_validate_key",
+          "display_name": "验证 API Key 有效性",
+          "file": "system/get_validate_key.json",
+          "endpoint": "GET /validate"
+        }
+      ]
+    }
+  ]
+}

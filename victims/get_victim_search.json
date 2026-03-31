@@ -1,0 +1,75 @@
+{
+  "skill_id": "victims_get_victim_search",
+  "name": "get_victim_search",
+  "display_name": "关键词搜索受害者",
+  "description": "通过关键词在受害者标题（post_title）或网站（website）字段中搜索，支持按组织、行业、国家过滤，并可选择排序方式。",
+  "category": "victims",
+  "version": "1.0.0",
+  "api": {
+    "base_url": "https://api-pro.ransomware.live",
+    "endpoint": "/victims/search",
+    "method": "GET",
+    "content_type": "application/json",
+    "auth": {
+      "type": "apikey",
+      "in": "header",
+      "name": "X-API-KEY"
+    }
+  },
+  "parameters_map": {
+    "q":       { "in": "query", "required": false },
+    "group":   { "in": "query", "required": false },
+    "sector":  { "in": "query", "required": false },
+    "country": { "in": "query", "required": false },
+    "order":   { "in": "query", "required": false }
+  },
+  "function": {
+    "type": "function",
+    "function": {
+      "name": "get_victim_search",
+      "description": "通过关键词在 post_title 或 website 中搜索受害者，支持按组织、行业、国家过滤和排序。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "q": {
+            "type": "string",
+            "description": "搜索关键词（匹配受害者名称 post_title 或网站 website）"
+          },
+          "group": {
+            "type": "string",
+            "description": "按勒索软件组织名称过滤（例如：lockbit）"
+          },
+          "sector": {
+            "type": "string",
+            "description": "按受害者行业过滤（例如：healthcare、education）"
+          },
+          "country": {
+            "type": "string",
+            "description": "按2位国家代码过滤（例如：US、FR）"
+          },
+          "order": {
+            "type": "string",
+            "description": "排序方式：'discovered'（默认）或 'attacked'（估计攻击日期）",
+            "enum": ["discovered", "attacked"],
+            "default": "discovered"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "搜索名称包含 'hospital' 的受害者",
+      "input": { "q": "hospital" }
+    },
+    {
+      "description": "在 LockBit 受害者中搜索包含 'bank' 的条目",
+      "input": { "q": "bank", "group": "lockbit3" }
+    },
+    {
+      "description": "搜索美国医疗行业受害者并按攻击日期排序",
+      "input": { "sector": "healthcare", "country": "US", "order": "attacked" }
+    }
+  ]
+}

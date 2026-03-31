@@ -1,0 +1,38 @@
+{
+  "skill_id": "negotiations_get_negotiation_groups",
+  "name": "get_negotiation_groups",
+  "display_name": "列出拥有谈判记录的勒索软件组织",
+  "description": "列出拥有可用谈判聊天记录的勒索软件组织，以及每个组织的聊天数量。",
+  "category": "negotiations",
+  "version": "1.0.0",
+  "api": {
+    "base_url": "https://api-pro.ransomware.live",
+    "endpoint": "/negotiations",
+    "method": "GET",
+    "content_type": "application/json",
+    "auth": {
+      "type": "apikey",
+      "in": "header",
+      "name": "X-API-KEY"
+    }
+  },
+  "parameters_map": {},
+  "function": {
+    "type": "function",
+    "function": {
+      "name": "get_negotiation_groups",
+      "description": "列出拥有可用谈判聊天记录的勒索软件组织及每个组织的聊天数量。",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "获取所有拥有谈判记录的勒索软件组织",
+      "input": {}
+    }
+  ]
+}

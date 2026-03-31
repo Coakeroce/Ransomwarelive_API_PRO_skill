@@ -1,0 +1,78 @@
+{
+  "skill_id": "filings_get_forms_8k",
+  "name": "get_forms_8k",
+  "display_name": "查询 8-K 网络安全归档表单",
+  "description": "返回与网络安全事件相关的 SEC 8-K 表单（Item 1.05 或 Item 8.01），可按 CIK、股票代码、年份或月份过滤。",
+  "category": "filings",
+  "version": "1.0.0",
+  "api": {
+    "base_url": "https://api-pro.ransomware.live",
+    "endpoint": "/8k",
+    "method": "GET",
+    "content_type": "application/json",
+    "auth": {
+      "type": "apikey",
+      "in": "header",
+      "name": "X-API-KEY"
+    }
+  },
+  "parameters_map": {
+    "ticker": { "in": "query", "required": false },
+    "cik":    { "in": "query", "required": false },
+    "year":   { "in": "query", "required": false },
+    "month":  { "in": "query", "required": false },
+    "item105":{ "in": "query", "required": false },
+    "item801":{ "in": "query", "required": false }
+  },
+  "function": {
+    "type": "function",
+    "function": {
+      "name": "get_forms_8k",
+      "description": "返回与网络安全事件相关的 SEC 8-K 表单（Item 1.05 或 Item 8.01），可按 CIK、股票代码、年份或月份过滤。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ticker": {
+            "type": "string",
+            "description": "按股票代码过滤（例如：MSFT）"
+          },
+          "cik": {
+            "type": "string",
+            "description": "按 CIK 代码过滤（例如：0001234567）"
+          },
+          "year": {
+            "type": "string",
+            "description": "归档日期的4位年份（例如：2025）"
+          },
+          "month": {
+            "type": "string",
+            "description": "2位月份（例如：06）"
+          },
+          "item105": {
+            "type": "string",
+            "description": "过滤 Item 1.05 归档（true/false，默认：true）",
+            "enum": ["true", "false"],
+            "default": "true"
+          },
+          "item801": {
+            "type": "string",
+            "description": "过滤 Item 8.01 归档（true/false，默认：true）",
+            "enum": ["true", "false"],
+            "default": "true"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "查询微软的网络安全归档",
+      "input": { "ticker": "MSFT" }
+    },
+    {
+      "description": "查询2024年6月的所有8-K网络安全表单",
+      "input": { "year": "2024", "month": "06" }
+    }
+  ]
+}

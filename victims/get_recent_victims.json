@@ -1,0 +1,51 @@
+{
+  "skill_id": "victims_get_recent_victims",
+  "name": "get_recent_victims",
+  "display_name": "获取最近100个受害者",
+  "description": "返回最近100个受害者的详细信息（已补充勒索软件组织信息）。可按发现日期或攻击日期排序。",
+  "category": "victims",
+  "version": "1.0.0",
+  "api": {
+    "base_url": "https://api-pro.ransomware.live",
+    "endpoint": "/victims/recent",
+    "method": "GET",
+    "content_type": "application/json",
+    "auth": {
+      "type": "apikey",
+      "in": "header",
+      "name": "X-API-KEY"
+    }
+  },
+  "parameters_map": {
+    "order": { "in": "query", "required": false }
+  },
+  "function": {
+    "type": "function",
+    "function": {
+      "name": "get_recent_victims",
+      "description": "返回最近100个受害者的详细信息。可按 'discovered'（发现日期，默认）或 'attacked'（估计攻击日期）排序。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "order": {
+            "type": "string",
+            "description": "排序方式：'discovered'（默认，ransomware.live 发现受害者的日期）或 'attacked'（估计攻击日期）",
+            "enum": ["discovered", "attacked"],
+            "default": "discovered"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "按发现日期获取最近100个受害者",
+      "input": {}
+    },
+    {
+      "description": "按攻击日期获取最近100个受害者",
+      "input": { "order": "attacked" }
+    }
+  ]
+}

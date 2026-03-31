@@ -1,0 +1,45 @@
+{
+  "skill_id": "negotiations_get_negotiation_group_chats",
+  "name": "get_negotiation_group_chats",
+  "display_name": "获取组织谈判聊天元数据",
+  "description": "返回指定勒索软件组织所有可用谈判聊天记录的元数据（聊天 ID、日期等），不含具体消息内容。",
+  "category": "negotiations",
+  "version": "1.0.0",
+  "api": {
+    "base_url": "https://api-pro.ransomware.live",
+    "endpoint": "/negotiations/{group}",
+    "method": "GET",
+    "content_type": "application/json",
+    "auth": {
+      "type": "apikey",
+      "in": "header",
+      "name": "X-API-KEY"
+    }
+  },
+  "parameters_map": {
+    "group": { "in": "path", "required": true }
+  },
+  "function": {
+    "type": "function",
+    "function": {
+      "name": "get_negotiation_group_chats",
+      "description": "返回指定勒索软件组织所有可用谈判聊天记录的元数据。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "group": {
+            "type": "string",
+            "description": "勒索软件组织名称（例如：lockbit）"
+          }
+        },
+        "required": ["group"]
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "获取 LockBit 组织的所有谈判聊天元数据",
+      "input": { "group": "lockbit" }
+    }
+  ]
+}

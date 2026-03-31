@@ -1,0 +1,53 @@
+{
+  "skill_id": "csirt_get_csirt_by_country",
+  "name": "get_csirt_by_country",
+  "display_name": "按国家查询 CSIRT/CERT 信息",
+  "description": "根据国家代码（ISO Alpha-2 或 Alpha-3）返回该国所有 CSIRT（计算机安全事件响应小组）/ CERT（计算机应急响应小组）条目。",
+  "category": "csirt",
+  "version": "1.0.0",
+  "api": {
+    "base_url": "https://api-pro.ransomware.live",
+    "endpoint": "/csirt/{country}",
+    "method": "GET",
+    "content_type": "application/json",
+    "auth": {
+      "type": "apikey",
+      "in": "header",
+      "name": "X-API-KEY"
+    }
+  },
+  "parameters_map": {
+    "country": { "in": "path", "required": true }
+  },
+  "function": {
+    "type": "function",
+    "function": {
+      "name": "get_csirt_by_country",
+      "description": "根据国家代码（ISO Alpha-2 或 Alpha-3）返回该国所有 CSIRT/CERT 条目。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "country": {
+            "type": "string",
+            "description": "国家代码（2位或3位 ISO 代码，例如：FR、US、DEU、GBR）"
+          }
+        },
+        "required": ["country"]
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "查询法国的 CSIRT/CERT 机构",
+      "input": { "country": "FR" }
+    },
+    {
+      "description": "查询德国的 CSIRT/CERT（使用3位代码）",
+      "input": { "country": "DEU" }
+    },
+    {
+      "description": "查询美国的 CSIRT/CERT",
+      "input": { "country": "US" }
+    }
+  ]
+}

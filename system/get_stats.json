@@ -1,0 +1,38 @@
+{
+  "skill_id": "system_get_stats",
+  "name": "get_stats",
+  "display_name": "获取平台统计数据",
+  "description": "返回 ransomware.live 平台的整体统计信息，包括受害者总数、勒索软件组织数量、新闻条目数量和最后更新时间。",
+  "category": "system",
+  "version": "1.0.0",
+  "api": {
+    "base_url": "https://api-pro.ransomware.live",
+    "endpoint": "/stats",
+    "method": "GET",
+    "content_type": "application/json",
+    "auth": {
+      "type": "apikey",
+      "in": "header",
+      "name": "X-API-KEY"
+    }
+  },
+  "parameters_map": {},
+  "function": {
+    "type": "function",
+    "function": {
+      "name": "get_stats",
+      "description": "返回统计信息，包括受害者数量、勒索软件组织数量、新闻条目数量和最后更新日期。",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "获取平台当前统计数据",
+      "input": {}
+    }
+  ]
+}

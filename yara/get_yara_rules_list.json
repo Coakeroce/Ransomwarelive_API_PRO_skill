@@ -1,0 +1,38 @@
+{
+  "skill_id": "yara_get_yara_rules_list",
+  "name": "get_yara_rules_list",
+  "display_name": "列出拥有 YARA 规则的组织",
+  "description": "列出所有拥有关联 YARA 规则文件的勒索软件组织。YARA 规则可用于恶意软件检测和分类。",
+  "category": "yara",
+  "version": "1.0.0",
+  "api": {
+    "base_url": "https://api-pro.ransomware.live",
+    "endpoint": "/yara",
+    "method": "GET",
+    "content_type": "application/json",
+    "auth": {
+      "type": "apikey",
+      "in": "header",
+      "name": "X-API-KEY"
+    }
+  },
+  "parameters_map": {},
+  "function": {
+    "type": "function",
+    "function": {
+      "name": "get_yara_rules_list",
+      "description": "列出所有拥有关联 YARA 规则文件的勒索软件组织。",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "获取所有拥有 YARA 规则的勒索软件组织",
+      "input": {}
+    }
+  ]
+}

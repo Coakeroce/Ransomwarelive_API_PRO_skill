@@ -1,0 +1,59 @@
+{
+  "skill_id": "iocs_get_group_iocs",
+  "name": "get_group_iocs",
+  "display_name": "获取指定组织的入侵指标 (IOC)",
+  "description": "返回特定勒索软件组织的所有入侵指标（IOC）。可使用 type 参数按 IOC 类型过滤（例如：ip、md5、email、btc）。注意：无速率限制，但请合理使用。",
+  "category": "iocs",
+  "version": "1.0.0",
+  "api": {
+    "base_url": "https://api-pro.ransomware.live",
+    "endpoint": "/iocs/{group}",
+    "method": "GET",
+    "content_type": "application/json",
+    "auth": {
+      "type": "apikey",
+      "in": "header",
+      "name": "X-API-KEY"
+    }
+  },
+  "parameters_map": {
+    "group": { "in": "path",  "required": true  },
+    "type":  { "in": "query", "required": false }
+  },
+  "function": {
+    "type": "function",
+    "function": {
+      "name": "get_group_iocs",
+      "description": "返回特定勒索软件组织的入侵指标（IOC）。可使用 type 参数过滤特定 IOC 类型（例如：ip、md5、email、btc）。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "group": {
+            "type": "string",
+            "description": "勒索软件组织名称（例如：lockbit3）"
+          },
+          "type": {
+            "type": "string",
+            "description": "可选 IOC 类型过滤器",
+            "enum": ["md5", "sha1", "sha256", "ip", "domain", "url", "email", "btc"]
+          }
+        },
+        "required": ["group"]
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "获取 LockBit 3 的所有 IOC",
+      "input": { "group": "lockbit3" }
+    },
+    {
+      "description": "获取 LockBit 3 的所有 IP 地址 IOC",
+      "input": { "group": "lockbit3", "type": "ip" }
+    },
+    {
+      "description": "获取 Clop 的所有 MD5 哈希 IOC",
+      "input": { "group": "clop", "type": "md5" }
+    }
+  ]
+}

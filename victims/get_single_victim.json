@@ -1,0 +1,45 @@
+{
+  "skill_id": "victims_get_single_victim",
+  "name": "get_single_victim",
+  "display_name": "查询单个受害者详情",
+  "description": "通过 Base64 编码的受害者 ID（格式为 post_title@group_name）返回该受害者的完整详情信息。",
+  "category": "victims",
+  "version": "1.0.0",
+  "api": {
+    "base_url": "https://api-pro.ransomware.live",
+    "endpoint": "/victim/{victim_id}",
+    "method": "GET",
+    "content_type": "application/json",
+    "auth": {
+      "type": "apikey",
+      "in": "header",
+      "name": "X-API-KEY"
+    }
+  },
+  "parameters_map": {
+    "victim_id": { "in": "path", "required": true }
+  },
+  "function": {
+    "type": "function",
+    "function": {
+      "name": "get_single_victim",
+      "description": "通过 Base64 编码的 ID（格式为 post_title@group_name）返回单个受害者的详细信息。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "victim_id": {
+            "type": "string",
+            "description": "Base64 编码的受害者 ID，原始格式为 'post_title@group_name'（例如：将 'CompanyName@lockbit3' 进行 Base64 编码）"
+          }
+        },
+        "required": ["victim_id"]
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "查询指定受害者详情（victim_id 为 Base64 编码的 'CompanyName@lockbit3'）",
+      "input": { "victim_id": "Q29tcGFueU5hbWVAbG9ja2JpdDM=" }
+    }
+  ]
+}

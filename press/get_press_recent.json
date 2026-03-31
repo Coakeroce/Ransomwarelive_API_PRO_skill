@@ -1,0 +1,49 @@
+{
+  "skill_id": "press_get_press_recent",
+  "name": "get_press_recent",
+  "display_name": "获取最近100条网络攻击新闻",
+  "description": "返回 cyberattacks.json 中最近100条网络攻击条目，已附加信息窃取软件和勒索软件的相关信息。可按2位 ISO 国家代码过滤。",
+  "category": "press",
+  "version": "1.0.0",
+  "api": {
+    "base_url": "https://api-pro.ransomware.live",
+    "endpoint": "/press/recent",
+    "method": "GET",
+    "content_type": "application/json",
+    "auth": {
+      "type": "apikey",
+      "in": "header",
+      "name": "X-API-KEY"
+    }
+  },
+  "parameters_map": {
+    "country": { "in": "query", "required": false }
+  },
+  "function": {
+    "type": "function",
+    "function": {
+      "name": "get_press_recent",
+      "description": "返回最近100条网络攻击新闻条目，包含信息窃取软件和勒索软件补充信息。可按2位 ISO 国家代码过滤。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "country": {
+            "type": "string",
+            "description": "按2位 ISO 国家代码过滤（例如：FR、US、DE）"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "获取最近100条网络攻击新闻",
+      "input": {}
+    },
+    {
+      "description": "获取美国最近的网络攻击新闻",
+      "input": { "country": "US" }
+    }
+  ]
+}

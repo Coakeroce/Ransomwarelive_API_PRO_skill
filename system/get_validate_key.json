@@ -1,0 +1,38 @@
+{
+  "skill_id": "system_get_validate_key",
+  "name": "get_validate_key",
+  "display_name": "验证 API Key 有效性",
+  "description": "检查 HTTP 请求头中提供的 X-API-KEY 是否有效，并返回关联的客户端 ID。通常用于初始化时验证密钥配置是否正确。",
+  "category": "system",
+  "version": "1.0.0",
+  "api": {
+    "base_url": "https://api-pro.ransomware.live",
+    "endpoint": "/validate",
+    "method": "GET",
+    "content_type": "application/json",
+    "auth": {
+      "type": "apikey",
+      "in": "header",
+      "name": "X-API-KEY"
+    }
+  },
+  "parameters_map": {},
+  "function": {
+    "type": "function",
+    "function": {
+      "name": "get_validate_key",
+      "description": "检查提供的 X-API-KEY 是否有效，并返回关联的客户端 ID。",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "验证当前 API Key 是否有效",
+      "input": {}
+    }
+  ]
+}

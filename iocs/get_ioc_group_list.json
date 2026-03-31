@@ -1,0 +1,54 @@
+{
+  "skill_id": "iocs_get_ioc_group_list",
+  "name": "get_ioc_group_list",
+  "display_name": "获取拥有 IOC 的勒索软件组织列表",
+  "description": "返回所有拥有入侵指标（IOC）的勒索软件组织，包括 IOC 类型和数量。可按 IOC 类型过滤（例如：md5、ip、email、btc）。注意：无速率限制，但请合理使用。",
+  "category": "iocs",
+  "version": "1.0.0",
+  "api": {
+    "base_url": "https://api-pro.ransomware.live",
+    "endpoint": "/iocs",
+    "method": "GET",
+    "content_type": "application/json",
+    "auth": {
+      "type": "apikey",
+      "in": "header",
+      "name": "X-API-KEY"
+    }
+  },
+  "parameters_map": {
+    "type": { "in": "query", "required": false }
+  },
+  "function": {
+    "type": "function",
+    "function": {
+      "name": "get_ioc_group_list",
+      "description": "返回所有拥有 IOC 的勒索软件组织，包括 IOC 类型和数量。可使用 type 参数过滤特定 IOC 类型。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "可选过滤器，仅返回具有该 IOC 类型的组织",
+            "enum": ["md5", "sha1", "sha256", "ip", "domain", "url", "email", "btc"]
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "获取所有拥有 IOC 的组织",
+      "input": {}
+    },
+    {
+      "description": "获取拥有比特币地址 IOC 的组织",
+      "input": { "type": "btc" }
+    },
+    {
+      "description": "获取拥有 IP 地址 IOC 的组织",
+      "input": { "type": "ip" }
+    }
+  ]
+}

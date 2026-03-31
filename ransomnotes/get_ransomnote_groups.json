@@ -1,0 +1,38 @@
+{
+  "skill_id": "ransomnotes_get_ransomnote_groups",
+  "name": "get_ransomnote_groups",
+  "display_name": "列出拥有勒索信的组织",
+  "description": "列出所有拥有可用勒索信的勒索软件组织，以及每个组织的勒索信数量。",
+  "category": "ransomnotes",
+  "version": "1.0.0",
+  "api": {
+    "base_url": "https://api-pro.ransomware.live",
+    "endpoint": "/ransomnotes",
+    "method": "GET",
+    "content_type": "application/json",
+    "auth": {
+      "type": "apikey",
+      "in": "header",
+      "name": "X-API-KEY"
+    }
+  },
+  "parameters_map": {},
+  "function": {
+    "type": "function",
+    "function": {
+      "name": "get_ransomnote_groups",
+      "description": "列出所有拥有可用勒索信的勒索软件组织及每个组织的勒索信数量。",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "获取所有拥有勒索信的勒索软件组织列表",
+      "input": {}
+    }
+  ]
+}

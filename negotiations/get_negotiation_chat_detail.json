@@ -1,0 +1,50 @@
+{
+  "skill_id": "negotiations_get_negotiation_chat_detail",
+  "name": "get_negotiation_chat_detail",
+  "display_name": "获取具体谈判聊天记录详情",
+  "description": "返回特定勒索软件组织某次谈判聊天的所有消息内容，以及赎金信息（初始要求金额、谈判后金额、实际支付金额）。",
+  "category": "negotiations",
+  "version": "1.0.0",
+  "api": {
+    "base_url": "https://api-pro.ransomware.live",
+    "endpoint": "/negotiations/{group}/{chat_id}",
+    "method": "GET",
+    "content_type": "application/json",
+    "auth": {
+      "type": "apikey",
+      "in": "header",
+      "name": "X-API-KEY"
+    }
+  },
+  "parameters_map": {
+    "group":   { "in": "path", "required": true },
+    "chat_id": { "in": "path", "required": true }
+  },
+  "function": {
+    "type": "function",
+    "function": {
+      "name": "get_negotiation_chat_detail",
+      "description": "返回特定勒索软件组织某次谈判聊天的所有消息及赎金信息（初始金额、谈判金额、实际支付金额）。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "group": {
+            "type": "string",
+            "description": "勒索软件组织名称（例如：lockbit）"
+          },
+          "chat_id": {
+            "type": "string",
+            "description": "聊天 ID 文件名（不含扩展名，例如：20240517）"
+          }
+        },
+        "required": ["group", "chat_id"]
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "获取 LockBit 组织2024年5月17日谈判聊天的完整内容",
+      "input": { "group": "lockbit", "chat_id": "20240517" }
+    }
+  ]
+}

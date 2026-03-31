@@ -1,0 +1,49 @@
+{
+  "skill_id": "yara_get_yara_rules_detail",
+  "name": "get_yara_rules_detail",
+  "display_name": "获取组织的 YARA 规则内容",
+  "description": "返回特定勒索软件组织可用的 YARA 规则文件内容，可直接用于安全工具的恶意软件检测。",
+  "category": "yara",
+  "version": "1.0.0",
+  "api": {
+    "base_url": "https://api-pro.ransomware.live",
+    "endpoint": "/yara/{group}",
+    "method": "GET",
+    "content_type": "application/json",
+    "auth": {
+      "type": "apikey",
+      "in": "header",
+      "name": "X-API-KEY"
+    }
+  },
+  "parameters_map": {
+    "group": { "in": "path", "required": true }
+  },
+  "function": {
+    "type": "function",
+    "function": {
+      "name": "get_yara_rules_detail",
+      "description": "返回特定勒索软件组织可用的 YARA 规则文件内容。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "group": {
+            "type": "string",
+            "description": "勒索软件组织名称（例如：lockbit）"
+          }
+        },
+        "required": ["group"]
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "获取 LockBit 组织的 YARA 检测规则",
+      "input": { "group": "lockbit" }
+    },
+    {
+      "description": "获取 Conti 组织的 YARA 检测规则",
+      "input": { "group": "conti" }
+    }
+  ]
+}

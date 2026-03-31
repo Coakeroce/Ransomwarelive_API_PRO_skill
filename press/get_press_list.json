@@ -1,0 +1,63 @@
+{
+  "skill_id": "press_get_press_list",
+  "name": "get_press_list",
+  "display_name": "获取所有网络攻击新闻条目",
+  "description": "返回 cyberattacks.json 中所有网络攻击条目，已附加信息窃取软件和勒索软件的相关信息。支持按年份、月份和2位 ISO 国家代码过滤。",
+  "category": "press",
+  "version": "1.0.0",
+  "api": {
+    "base_url": "https://api-pro.ransomware.live",
+    "endpoint": "/press/all",
+    "method": "GET",
+    "content_type": "application/json",
+    "auth": {
+      "type": "apikey",
+      "in": "header",
+      "name": "X-API-KEY"
+    }
+  },
+  "parameters_map": {
+    "year":    { "in": "query", "required": false },
+    "month":   { "in": "query", "required": false },
+    "country": { "in": "query", "required": false }
+  },
+  "function": {
+    "type": "function",
+    "function": {
+      "name": "get_press_list",
+      "description": "返回所有网络攻击新闻条目，包含信息窃取软件和勒索软件补充信息，可按年份、月份和国家代码过滤。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "year": {
+            "type": "string",
+            "description": "按4位年份过滤（例如：2024）"
+          },
+          "month": {
+            "type": "string",
+            "description": "按2位月份过滤（例如：03）"
+          },
+          "country": {
+            "type": "string",
+            "description": "按2位 ISO 国家代码过滤（例如：FR、US、DE）"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "获取2024年3月的所有网络攻击新闻",
+      "input": { "year": "2024", "month": "03" }
+    },
+    {
+      "description": "获取法国的所有网络攻击新闻",
+      "input": { "country": "FR" }
+    },
+    {
+      "description": "获取美国2024年的所有网络攻击新闻",
+      "input": { "year": "2024", "country": "US" }
+    }
+  ]
+}
